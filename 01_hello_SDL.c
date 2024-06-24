@@ -13,7 +13,13 @@ int main( int argc, char* args[] )
 		SDL_SetRenderDrawColor(instance.renderer, 0, 0, 0, 0);
 		SDL_RenderClear(instance.renderer);
 		draw_stuff(&instance);
+		if (poll_events() == 1)
+			break;
 		SDL_RenderPresent(instance.renderer);
 	}
+	SDL_DestroyRenderer(instance.renderer);
+	SDL_DestroyWindow(instance.window);
+	SDL_Quit();
+
 	return (0);
 }
