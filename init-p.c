@@ -12,7 +12,7 @@ int init_instance (SDL_Instance *instance)
 	if (instance->window == 0)
 	{
 		fprintf(stderr, "SDL_CreateWindow Error: %s\n", SDL_GetError());
-		SDL_DestroyWindow(instance->renderer);
+		SDL_DestroyRenderer(instance->renderer);
 		SDL_Quit();
 		return (1);
 	}
@@ -22,18 +22,12 @@ int init_instance (SDL_Instance *instance)
 	{
 		SDL_DestroyWindow (instance->window);
 		fprintf(stderr, "SDL_CreateRenderer Error: %s\n", SDL_GetError());
-		SDL_DestroyWindow(instance->renderer);
+		SDL_DestroyRenderer(instance->renderer);
 		SDL_DestroyWindow(instance->window);
 		SDL_Quit(); 
 		return (1);
 	}
 	return (0);
-}
-
-void draw_stuff(SDL_Instance *instance)
-{
-	SDL_SetRenderDrawColor(instance->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderDrawLine(instance->renderer, 10, 10, 100, 100);
 }
 
 int poll_events()
